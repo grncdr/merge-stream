@@ -32,5 +32,6 @@ module.exports = function (/*streams...*/) {
       sources = sources.filter(function (it) { return it !== e })
       if (!sources.length) stream.emit('end')
     })
+    return e;
   }
 }
