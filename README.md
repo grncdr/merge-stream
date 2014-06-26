@@ -1,5 +1,9 @@
 # merge-stream
 
+Merge (interleave) a bunch of streams.
+
+[![build status](https://secure.travis-ci.org/grncdr/merge-stream.svg?branch=master)](http://travis-ci.org/grncdr/merge-stream)
+
 ## Synopsis
 
 ```javascript
