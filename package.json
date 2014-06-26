@@ -4,9 +4,16 @@
   "description": "Create a stream that emits events from multiple other streams",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "istanbul cover test.js && istanbul check-cover --statements 100 --branches 100"
   },
   "repository": "grncdr/merge-stream",
   "author": "Stephen Sugden <me@stephensugden.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "through2": "^0.5.1"
+  },
+  "devDependencies": {
+    "from2": "0.0.0",
+    "istanbul": "^0.2.12"
+  }
 }

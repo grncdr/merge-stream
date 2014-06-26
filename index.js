@@ -1,38 +1,31 @@
-var Stream = require('stream');
+'use strict'
+
+var through = require('through2')
 
 module.exports = function (/*streams...*/) {
-  var sources = [];
-  var stream  = new Stream();
+  var firstTick = true;
+  var sources = []
+  var output  = through.obj()
 
-  stream.setMaxListeners(0)
-  stream.writable = stream.readable = true;
+  output.setMaxListeners(0)
 
-  [].slice.call(arguments).forEach(addStream);
+  output.add = add
 
-  stream.add = addStream;
+  output.on('unpipe', remove)
 
-  stream.write = function (data) {
-    this.emit('data', data)
+  Array.prototype.slice.call(arguments).forEach(add)
+
+  return output
+
+  function add (source) {
+    sources.push(source)
+    source.once('end', remove.bind(null, source))
+    source.pipe(output, {end: false})
+    return source
   }
 
-  stream.destroy = function () {
-    sources.forEach(function (e) {
-      if (e.destroy) e.destroy()
-    })
-  }
-
-  return stream
-
-  function addStream(e) {
-    sources.push(e);
-    e.pipe(stream, {end: false})
-    var ended = false
-    e.on('end', function () {
-      if (ended) return
-      ended = true
-      sources = sources.filter(function (it) { return it !== e })
-      if (!sources.length) stream.emit('end')
-    })
-    return e;
+  function remove (source) {
+    sources = sources.filter(function (it) { return it !== source })
+    if (!sources.length && output.readable) { output.emit('end') }
   }
 }
