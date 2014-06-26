@@ -4,6 +4,7 @@ module.exports = function (/*streams...*/) {
   var sources = [];
   var stream  = new Stream();
 
+  stream.setMaxListeners(0)
   stream.writable = stream.readable = true;
 
   [].slice.call(arguments).forEach(addStream);
