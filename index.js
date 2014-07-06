@@ -6,6 +6,11 @@ module.exports = function (/*streams...*/) {
   var firstTick = true;
   var sources = []
   var output  = through.obj()
+  var args = arguments
+
+  if (args[0] instanceof Array){
+    args = args[0]
+  }
 
   output.setMaxListeners(0)
 
@@ -13,7 +18,7 @@ module.exports = function (/*streams...*/) {
 
   output.on('unpipe', remove)
 
-  Array.prototype.slice.call(arguments).forEach(add)
+  Array.prototype.slice.call(args).forEach(add)
 
   return output
 
