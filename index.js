@@ -6,11 +6,6 @@ module.exports = function (/*streams...*/) {
   var firstTick = true;
   var sources = []
   var output  = through.obj()
-  var args = arguments
-
-  if (args[0] instanceof Array){
-    args = args[0]
-  }
 
   output.setMaxListeners(0)
 
@@ -18,15 +13,19 @@ module.exports = function (/*streams...*/) {
 
   output.on('unpipe', remove)
 
-  Array.prototype.slice.call(args).forEach(add)
+  Array.prototype.slice.call(arguments).forEach(add)
 
   return output
 
-  function add (source) {
-    sources.push(source)
-    source.once('end', remove.bind(null, source))
-    source.pipe(output, {end: false})
-    return source
+  function add (stream_or_arr) {
+    var new_sources = stream_or_arr instanceof Array ? stream_or_arr : [stream_or_arr]
+    sources = sources.concat(new_sources)
+    
+    Array.prototype.slice.call(new_sources).forEach(function (source) {
+      source.once('end', remove.bind(null, source))
+      source.pipe(output, {end: false})
+    })
+    return this
   }
 
   function remove (source) {
