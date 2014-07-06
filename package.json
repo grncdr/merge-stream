@@ -1,6 +1,6 @@
 {
   "name": "merge-stream",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Create a stream that emits events from multiple other streams",
   "main": "index.js",
   "scripts": {
