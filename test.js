@@ -5,8 +5,8 @@ var from = require('from2')
 
 var merge = require('./')
 
-function test (name,fn) {
-  var combined = merge();
+function test (name, fn, c) {
+  var combined = c || merge();
   var to = after(1000, process.emit.bind(process), 'error', new Error(name))
   combined.on('end', function () {
     clearTimeout(to)
@@ -50,6 +50,15 @@ test('pause/resume', function (combined) {
 
   combined.on('end', function () { assert.equal(counter, 200) })
 })
+
+test('array', function (combined) {
+  var counter = 0;
+  combined.on('data', function () { counter++ })
+  combined.on('end', function () { assert.equal(counter, 200) })
+}, merge([
+  range(100),
+  range(-100)
+]))
 
 function range (n) {
   var k = n > 0 ? -1 : 1
