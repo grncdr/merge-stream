@@ -3,7 +3,6 @@
 var through = require('through2')
 
 module.exports = function (/*streams...*/) {
-  var firstTick = true;
   var sources = []
   var output  = through.obj()
 
