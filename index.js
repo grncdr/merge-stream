@@ -6,6 +6,8 @@ module.exports = function (/*streams...*/) {
   var firstTick = true;
   var sources = []
   var output  = through.obj()
+  
+  output.resume()
 
   output.setMaxListeners(0)
 
