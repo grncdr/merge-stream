@@ -17,14 +17,15 @@ module.exports = function (/*streams...*/) {
 
   return output
 
-  function add (stream_or_arr) {
-    var new_sources = stream_or_arr instanceof Array ? stream_or_arr : [stream_or_arr]
-    sources = sources.concat(new_sources)
-    
-    Array.prototype.slice.call(new_sources).forEach(function (source) {
-      source.once('end', remove.bind(null, source))
-      source.pipe(output, {end: false})
-    })
+  function add (source) {
+    if (Array.isArray(source)) {
+      source.forEach(add)
+      return this
+    }
+
+    sources.push(source);
+    source.once('end', remove.bind(null, source))
+    source.pipe(output, {end: false})
     return this
   }
 
