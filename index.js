@@ -5,6 +5,8 @@ var through = require('through2')
 module.exports = function (/*streams...*/) {
   var sources = []
   var output  = through.obj()
+  
+  output.resume()
 
   output.setMaxListeners(0)
 
