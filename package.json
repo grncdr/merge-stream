@@ -10,7 +10,7 @@
   "author": "Stephen Sugden <me@stephensugden.com>",
   "license": "MIT",
   "dependencies": {
-    "through2": "^0.5.1"
+    "through2": "^0.6.1"
   },
   "devDependencies": {
     "from2": "0.0.0",
