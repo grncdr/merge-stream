@@ -3,6 +3,9 @@
   "version": "0.1.5",
   "description": "Create a stream that emits events from multiple other streams",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "istanbul cover test.js && istanbul check-cover --statements 100 --branches 100"
   },
@@ -13,7 +16,7 @@
     "through2": "^0.6.1"
   },
   "devDependencies": {
-    "from2": "0.0.0",
-    "istanbul": "^0.2.12"
+    "from2": "^1.2.0",
+    "istanbul": "^0.3.2"
   }
 }
