@@ -30,6 +30,6 @@ module.exports = function (/*streams...*/) {
 
   function remove (source) {
     sources = sources.filter(function (it) { return it !== source })
-    if (!sources.length && output.readable) { output.emit('end') }
+    if (!sources.length && output.readable) { output.end() }
   }
 }
