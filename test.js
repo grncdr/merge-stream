@@ -7,7 +7,7 @@ var merge = require('./')
 
 function test (name, fn, c) {
   var combined = c || merge();
-  var to = after(1000, process.emit.bind(process), 'error', new Error(name))
+  var to = after(1000, process.emit.bind(process), 'error', new Error('Timed out: ' + name))
   combined.on('end', function () {
     clearTimeout(to)
   });
@@ -70,4 +70,3 @@ function range (n) {
 }
 
 function after (ms, fn, a, b, c) { return setTimeout(fn, ms, a, b, c) }
-
