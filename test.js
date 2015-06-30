@@ -60,6 +60,13 @@ test('array', function (combined) {
   range(-100)
 ]))
 
+test('isEmpty', function (combined) {
+  assert(combined.isEmpty());
+  combined.on('data', function (n) { assert.equal(0, n) });
+  combined.add(range(1));
+  assert(!combined.isEmpty());
+})
+
 function range (n) {
   var k = n > 0 ? -1 : 1
   return from.obj(function (_, next) {

@@ -9,6 +9,7 @@ module.exports = function (/*streams...*/) {
   output.setMaxListeners(0)
 
   output.add = add
+  output.isEmpty = isEmpty
 
   output.on('unpipe', remove)
 
@@ -26,6 +27,10 @@ module.exports = function (/*streams...*/) {
     source.once('end', remove.bind(null, source))
     source.pipe(output, {end: false})
     return this
+  }
+
+  function isEmpty () {
+    return sources.length == 0;
   }
 
   function remove (source) {
