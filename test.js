@@ -62,6 +62,7 @@ test('array', function (combined) {
 
 test('isEmpty', function (combined) {
   assert(combined.isEmpty());
+  combined.on('data', function (n) { assert.equal(0, n) });
   combined.add(range(1));
   assert(!combined.isEmpty());
 })
