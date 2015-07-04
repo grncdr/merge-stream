@@ -1,10 +1,10 @@
 'use strict';
 
-var through = require('through2')
+var PassThrough = require('readable-stream/passthrough')
 
 module.exports = function (/*streams...*/) {
   var sources = []
-  var output  = through.obj()
+  var output  = new PassThrough({objectMode: true})
 
   output.setMaxListeners(0)
 

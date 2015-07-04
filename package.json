@@ -13,10 +13,10 @@
   "author": "Stephen Sugden <me@stephensugden.com>",
   "license": "MIT",
   "dependencies": {
-    "through2": "^0.6.1"
+    "readable-stream": "^2.0.1"
   },
   "devDependencies": {
-    "from2": "^1.2.0",
+    "from2": "^2.0.3",
     "istanbul": "^0.3.2"
   }
 }
