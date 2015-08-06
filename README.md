@@ -18,7 +18,7 @@ merged.add(stream3);
 
 ## Description
 
-This is the merge function from [event-stream](https://github.com/dominictarr/event-stream) separated into a new module and given an `add` method so you can dynamically add more sources to the stream.
+This is adapted from [event-stream](https://github.com/dominictarr/event-stream) separated into a new module, using Streams3 and given an `add` method so you can dynamically add more sources to the stream.
 
 ## License
 
