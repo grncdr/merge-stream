@@ -3,6 +3,5 @@ branches:
   except: /^v\d/
 language: node_js
 node_js:
-  - 'iojs'
-  - 'node'
+  - node
   - '0.10'
