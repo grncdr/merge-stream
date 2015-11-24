@@ -24,11 +24,17 @@ This is adapted from [event-stream](https://github.com/dominictarr/event-stream)
 
 ## API
 
-`merged.add`
+### `mergeStream`
+
+Type: `function`
+
+Merges an arbitrary number of streams. Returns a merged stream.
+
+#### `merged.add`
 
 A method to dynamically add more sources to the stream. The argument supplied to `add` can be either a source or an array of sources.
 
-`merged.isEmpty`
+#### `merged.isEmpty`
 
 A method that tells you if the merged stream is empty.
 
