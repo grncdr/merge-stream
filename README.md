@@ -26,7 +26,7 @@ This is adapted from [event-stream](https://github.com/dominictarr/event-stream)
 
 `merged.add`
 
-A method to dynamically add more sources to the stream.
+A method to dynamically add more sources to the stream. The argument supplied to `add` can be either a source or an array of sources.
 
 `merged.isEmpty`
 
