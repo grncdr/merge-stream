@@ -67,6 +67,32 @@ test('isEmpty', function (combined) {
   assert(!combined.isEmpty());
 })
 
+test('propagates errors', function (combined) {
+  var ERROR_MESSAGE = 'TEST: INTERNAL STREAM ERROR';
+  var streamToError = range(100);
+  var streamJustFine = range(-100);
+  var errorCounter = 0;
+
+  combined.add(streamToError);
+  combined.add(streamJustFine);
+  combined.on('error', function(err) {
+    assert.equal(err.message, ERROR_MESSAGE);
+    errorCounter++;
+  })
+
+  after(50, function () {
+    assert.equal(errorCounter, 0);
+    streamToError.emit('error', new Error(ERROR_MESSAGE));
+
+    after(1, function () {
+      assert.equal(errorCounter, 1);
+      // End the stream manually to end the test
+      combined.emit('end');
+    });
+
+  });
+})
+
 function range (n) {
   var k = n > 0 ? -1 : 1
   return from.obj(function (_, next) {
