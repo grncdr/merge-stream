@@ -25,6 +25,7 @@ module.exports = function (/*streams...*/) {
 
     sources.push(source);
     source.once('end', remove.bind(null, source))
+    source.once('error', output.emit.bind(output, 'error'))
     source.pipe(output, {end: false})
     return this
   }
