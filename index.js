@@ -10,6 +10,7 @@ module.exports = function (/*streams...*/) {
 
   output.add = add
   output.isEmpty = isEmpty
+  output.finalize = finalize
 
   output.on('unpipe', remove)
 
@@ -32,6 +33,10 @@ module.exports = function (/*streams...*/) {
 
   function isEmpty () {
     return sources.length == 0;
+  }
+  
+  function finalize() {
+    if (!sources.length && output.readable) { output.end() }
   }
 
   function remove (source) {
