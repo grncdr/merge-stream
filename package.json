@@ -6,6 +6,7 @@
     "index.js"
   ],
   "scripts": {
+    "pretest": "jshint *.js",
     "test": "istanbul cover test.js && istanbul check-cover --statements 100 --branches 100"
   },
   "repository": "grncdr/merge-stream",
@@ -14,6 +15,7 @@
   "dependencies": {},
   "devDependencies": {
     "from2": "^2.0.3",
-    "istanbul": "^0.4.5"
+    "istanbul": "^0.4.5",
+    "jshint": "~2.10.2"
   }
 }

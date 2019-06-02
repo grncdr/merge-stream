@@ -7,12 +7,12 @@ Merge (interleave) a bunch of streams.
 ## Synopsis
 
 ```javascript
-var stream1 = new Stream();
-var stream2 = new Stream();
+const stream1 = new Stream();
+const stream2 = new Stream();
 
-var merged = mergeStream(stream1, stream2);
+const merged = mergeStream(stream1, stream2);
 
-var stream3 = new Stream();
+const stream3 = new Stream();
 merged.add(stream3);
 merged.isEmpty();
 //=> false
@@ -60,7 +60,7 @@ const htmlValidator = require('gulp-w3c-html-validator');
 const jsHint =        require('gulp-jshint');
 const mergeStream =   require('merge-stream');
 
-function lint() {
+const taskLint = () => {
   return mergeStream(
     gulp.src('src/*.html')
       .pipe(htmlValidator())
@@ -69,8 +69,8 @@ function lint() {
       .pipe(jsHint())
       .pipe(jsHint.reporter())
   );
-}
-gulp.task('lint', lint);
+};
+gulp.task('lint', taskLint);
 ```
 
 ## License

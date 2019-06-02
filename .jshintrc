@@ -1,12 +1,10 @@
 {
-  "globalstrict": true,
-  "node": true,
-  "proto": true,
-  "quotmark": "single",
-  "strict": true,
-  "trailing": true,
+  "esversion": 6,
+  "strict": "implied",
+  "eqeqeq": true,
+  "undef": true,
   "unused": true,
+  "node": true,
   "latedef": "nofunc",
   "asi": true
 }
-
